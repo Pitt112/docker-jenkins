@@ -9,3 +9,6 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
+    environment:
+      - JAVA_OPTS=-server -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+ExplicitGCInvokesConcurrent -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:+UnlockDiagnosticVMOptions -XX:G1SummarizeRSetStatsPeriod=1
+      #-JAVA_OPTS=-Dhudson.footerURL=http://mycompany.com jenkins -server -XX:+AlwaysPreTouch
