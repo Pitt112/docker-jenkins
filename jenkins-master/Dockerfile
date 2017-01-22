@@ -1,24 +1,28 @@
 FROM jenkins:2.32.1
 
-USER jenkins
-COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/executors.groovy
+#USER root
+ARG user=jenkins
+ARG group=jenkins
 
+USER jenkins
+
+COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/executors.groovy
 COPY plugins.txt /var/jenkins_home/plugins.txt
+COPY config /var/jenkins_home
+
+#RUN chown -R jenkins:jenkins /var/jenkins_home
+
+
+USER jenkins
+
+#RUN ["chown" ,"jenkins", "/var/jenkins_home/plugins.txt"]
 RUN /usr/local/bin/plugins.sh /var/jenkins_home/plugins.txt
 
 RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 
-USER root
-COPY /userContent /var/jenkins_home/userContent
-
-ADD http://afonsof.com/jenkins-material-theme/dist/material-indigo.css var/jenkins_home/userContent/material.css
-RUN chown -R jenkins /var/jenkins_home/userContent
-USER jenkins
-
-#RUN ls -halt var/jenkins_home/userContent
 #USER root
-#RUN chown jenkins:jenkins var/jenkins_home/userContent/material.css
-#RUN ls -halt var/jenkins_home/userContent
+#COPY /content /var/jenkins_home/userContent
+
 
 #RUN ls -halt var/jenkins_home/
 #RUN ls -halt var/jenkins_home/userContent/

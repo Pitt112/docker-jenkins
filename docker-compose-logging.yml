@@ -1,0 +1,14 @@
+version: '2'
+services:
+  nginx:
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+  master:
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"

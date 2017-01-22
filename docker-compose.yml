@@ -1,14 +1,15 @@
 version: '2'
 services:
-  jenkins:
-    build: .
+  nginx:
+    build: jenkins-nginx
     ports:
-      - "8080:8080"
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "5"
+      - "80:80"
+    links:
+      - master:jenkins-master
+  master:
+    build: jenkins-master
+    ports:
+      - "50000:50000"
     environment:
       - JAVA_OPTS=-server -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+ExplicitGCInvokesConcurrent -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:+UnlockDiagnosticVMOptions -XX:G1SummarizeRSetStatsPeriod=1
       #-JAVA_OPTS=-Dhudson.footerURL=http://mycompany.com jenkins -server -XX:+AlwaysPreTouch
