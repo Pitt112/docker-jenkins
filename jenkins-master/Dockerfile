@@ -1,12 +1,10 @@
 FROM jenkins:2.32.1
 
-#USER root
-ARG user=jenkins
-ARG group=jenkins
-
 USER jenkins
 
-COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/executors.groovy
+COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
+
 COPY plugins.txt /var/jenkins_home/plugins.txt
 COPY config /var/jenkins_home
 
@@ -18,7 +16,9 @@ USER jenkins
 #RUN ["chown" ,"jenkins", "/var/jenkins_home/plugins.txt"]
 RUN /usr/local/bin/plugins.sh /var/jenkins_home/plugins.txt
 
-RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+#RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+RUN echo 2.32.2 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+RUN echo 2.32.2 > /usr/share/jenkins/ref/jenkins.install.InstallUtil.lastExecVersion
 
 #USER root
 #COPY /content /var/jenkins_home/userContent
