@@ -2,11 +2,13 @@ FROM jenkins:2.32.1
 
 USER jenkins
 
-COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/
-COPY default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY /system/init.groovy.d/* /usr/share/jenkins/ref/init.groovy.d/
 
-COPY plugins.txt /var/jenkins_home/plugins.txt
-COPY config /var/jenkins_home
+COPY /system/home/* /var/jenkins_home/
+
+COPY /custom/init.groovy.d/* /usr/share/jenkins/ref/init.groovy.d/
+
+COPY /custom/home/* /var/jenkins_home/
 
 #RUN chown -R jenkins:jenkins /var/jenkins_home
 
