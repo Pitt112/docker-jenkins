@@ -56,6 +56,7 @@ icon-shim:2.0.3
 jackson2-api:2.7.3
 jacoco:2.2.0
 javadoc:1.4
+jira-steps:1.0.1
 jira:2.3
 jquery-detached:1.2.1
 jquery:1.11.2-0
