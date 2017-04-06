@@ -1,4 +1,4 @@
-FROM jenkins:2.32.1
+FROM jenkins:2.46.1
 
 USER jenkins
 
@@ -19,8 +19,8 @@ USER jenkins
 RUN /usr/local/bin/plugins.sh /var/jenkins_home/plugins.txt
 
 #RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
-RUN echo 2.32.2 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
-RUN echo 2.32.2 > /usr/share/jenkins/ref/jenkins.install.InstallUtil.lastExecVersion
+RUN echo 2.46.2 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+RUN echo 2.46.2 > /usr/share/jenkins/ref/jenkins.install.InstallUtil.lastExecVersion
 
 #USER root
 #COPY /content /var/jenkins_home/userContent
